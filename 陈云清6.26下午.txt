@@ -1,0 +1,42 @@
+void dele_num()
+{
+     FILE *fp;
+     int i,j,n;
+     char num[5];
+     if((fp=fopen("emp.txt","rb"))==NULL)
+     {
+         printf("不能打开emp文件\n");
+         exit(1);
+      }
+     printf("删除前:\n");
+     printf("记录号 \n");
+    for(n=0;fread(&emp[n],sizeof(struct emploee),1,fp);n++)
+     printf("%6d%6s%9s%4s%5d   %.1f   %.1f   %.1f   %.1f   %.1f   %.1f\n",n+1,emp[n].no,emp[n].name,emp[n].sex, emp[n].age,emp[n].wage1,
+             emp[n].wage2,emp[n].funds,emp[n].WATERfee,emp[n].TAXfee,emp[n].wage3);/*n为emp文件中记录数*/
+     printf("要删除的职工号:");
+     scanf("%s",num);
+     for(i=0;(strcmp(emp[i].no,num)!=0&&i<n);i++)
+     if(i>=n)
+     {
+          printf("\t没有%s职工号的职工\n",num);
+          exit(2);
+     }
+     fclose(fp);
+     fp=fopen("emp.dat","w+");
+     if(n==1)  
+     {
+           fclose(fp);
+           exit(3);
+     }
+     for(j=0;j<i;j++)
+        fwrite(&emp[j],sizeof(struct emploee),1,fp);
+     for(j=i+1;j<n;j++)
+         fwrite(&emp[j],sizeof(struct emploee),1,fp);
+     printf("删除后:\n");
+     fseek(fp,0,SEEK_SET);
+     printf("工号 姓名 岗位工资 薪级工资 职务津贴 绩效工资 应发工资 个人所得税 实发工资\n");
+     for(i=0;fread(&emp[i],sizeof(struct emploee),1,fp);i++)
+         printf("%6d%6s%9s%4s%5d%   %.1f    %.1f   %.1f   %.1f   %.1f   %.1f\n",i+1,emp[i].no,emp[i].name,emp[i].sex, emp[i].age,emp[i].wage1,
+                 emp[i].wage2,emp[i].funds,emp[i].WATERfee,emp[i].TAXfee,emp[i].wage3);
+       fclose(fp);
+}
