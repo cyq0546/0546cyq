@@ -13,15 +13,15 @@
 #define TRUE 1
 
 void read();			  //读取职工工资数据
-void write();			  //保存职工工资数据
 void find();			  //查询职工工资数据
+void write();			  //保存职工工资数据
 void modify();			  //修改职工工资数据
 void add();			      //增加职工工资数据
 void del();			      //删除职工工资数据
 float grsds(float m);	  //计算个人所得税
 void list();			  //浏览职工工资数据
 
-struct zhigong			//职工工资数据结构体
+struct zhigong			//声明职工工资数据结构体
 {
 	char gonghao[10];	//职工工号
 	char name[10];		//职工姓名
@@ -41,20 +41,20 @@ int n=-1;		//声明统计职工人数全局变量
 void main()
 {
 	char ch;
-	read();  //读取职工工资数据
+	read();     //读取职工工资数据
 	while(TRUE)
 	{
 		system("cls");		//清屏命令
 		printf("\n\n\t\t### 欢迎使用广西民族大学软件与信息安全学院工资管理系统 ###\n\n\n");
 		printf("\t\t请选择(1-7) :\n");
 		printf("\t\t==============================================\n");
-		printf("\t\t\t1.查询职工工资\n");
-		printf("\t\t\t2.修改职工工资\n");
-		printf("\t\t\t3.添加职工工资\n");
-		printf("\t\t\t4.删除职工工资\n");
-		printf("\t\t\t5.保存数据到文件\n");
-		printf("\t\t\t6.浏览职工记录\n");
-		printf("\t\t\t7.退出工资管理系统\n");
+		printf("\t\t| 1.查询职工工资记录                         |\n");
+		printf("\t\t| 2.修改职工工资记录                         |\n");
+		printf("\t\t| 3.添加职工工资记录                         |\n");
+		printf("\t\t| 4.删除职工工资记录                         |\n");
+		printf("\t\t| 5.保存数据到文件                           |\n");
+		printf("\t\t| 6.浏览职工记录                             |\n");
+		printf("\t\t| 7.退出工资管理系统                         |\n");
 		printf("\t\t==============================================\n");
 		printf("\n\t\t你的选择是：");
 		ch=getche();
@@ -102,7 +102,7 @@ void read()		//从文件gz.dat中读取职工工资的数据到数组zggz中
 		fclose(file);	//关闭文件指针
 		printf("\n\n\t职工工资数据读取完毕，共有%d人! \n",n);
 		printf("\n\t3秒钟后继续…… \n",n);
-		n--;	//计算出职工数据的总数
+		n--;         	//计算出职工数据的总数
 		Sleep(3000);	//设置延时3秒钟
 	}
 }
